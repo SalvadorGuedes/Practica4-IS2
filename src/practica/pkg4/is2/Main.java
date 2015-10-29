@@ -23,11 +23,13 @@ public class Main {
         BufferedInputStream input = new BufferedInputStream(new FileInputStream(new File(from)));
         BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(new File(to)));
         
+        byte[] buffer = new byte [1024];
+        
         Date date = new Date();
         while(true){
-            int read = input.read();
+            int read = input.read(buffer);
             if(read < 0) break;
-            output.write(read);
+            output.write(buffer);
         }
         System.out.println(new Date().getTime()-date.getTime()+ " msg");
         
